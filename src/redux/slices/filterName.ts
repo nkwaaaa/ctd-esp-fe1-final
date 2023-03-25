@@ -43,7 +43,7 @@ export const get_character_name = createAsyncThunk<
 	NamePage
 >("characters/get_character_name", async (namePage, thunkAPI) => {
 	try {
-		console.log(namePage);
+		//console.log(namePage);
 		const response = await fetch(
 			URL_CHARACTER_NAME + namePage.name + "&page=" + namePage.page
 		);
