@@ -12,7 +12,6 @@ export const getCharacterPage = createAsyncThunk<CharactersResponse, number>(
 
 			return data as CharactersResponse;
 		} catch (error) {
-			//console.log(error);
 			return thunkAPI.rejectWithValue(error);
 		}
 	}

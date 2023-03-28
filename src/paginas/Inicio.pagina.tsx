@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import Paginacion from "../componentes/paginacion/paginacion.componente";
 import Filtros from "../componentes/personajes/filtros.componente";
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
@@ -12,18 +12,23 @@ const PaginaInicio: FC = () => {
 	) as { characters2: CharactersResponse; loading2: boolean };
 
 	const dispatch = useAppDispatch();
-	const limpiar = () => {
-		dispatch(getCharacterName({ name: "", page: 1 }));
+	const clear = () => {
+		if (filterRef.current) {
+			dispatch(getCharacterName({ name: "", page: 1 }));
+			filterRef.current.value = "";
+		}
 	};
+
+	const filterRef = useRef<HTMLInputElement>(null);
 	return (
 		<div className="container">
 			<div className="actions">
 				<h3>Catálogo de Personajes</h3>
-				<button className="danger" onClick={limpiar}>
+				<button className="danger" onClick={clear}>
 					Limpiar Filtros
 				</button>
 			</div>
-			<Filtros />
+			<Filtros filterRef={filterRef} />
 			<Paginacion />
 			{loading2 ? (
 				<h1>Cargando...</h1>

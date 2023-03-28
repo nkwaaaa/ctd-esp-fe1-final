@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import "./filtros.css";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -13,7 +13,11 @@ import { setear } from "../../redux/slices/pageSlice";
  * @returns {JSX.Element} Elemento JSX del componente Filtros.
  */
 
-const Filtros = (): JSX.Element => {
+interface Props {
+	filterRef: RefObject<HTMLInputElement>;
+}
+
+const Filtros = ({ filterRef }: Props): JSX.Element => {
 	const [getName, setName] = useState<string>("");
 	const dispatch = useAppDispatch();
 	const getCount = useAppSelector((state) => state.page.value);
@@ -37,9 +41,9 @@ const Filtros = (): JSX.Element => {
 			<input
 				type="text"
 				placeholder="Rick, Morty, Beth, Alien, ...etc"
-				value={getName}
 				name="nombre"
 				onChange={handlerChange}
+				ref={filterRef}
 			/>
 		</div>
 	);

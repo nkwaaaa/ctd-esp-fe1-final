@@ -24,6 +24,7 @@ const PaginaFavoritos = (): JSX.Element => {
 					Eliminar todos los favoritos
 				</button>
 			</div>
+
 			<GrillaPersonajes data={favoritos.favoritos} />
 		</div>
 	);
