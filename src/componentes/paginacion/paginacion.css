@@ -1,6 +1,6 @@
 .paginacion {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px 0;
+	display: flex !important;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 10px 0;
 }
