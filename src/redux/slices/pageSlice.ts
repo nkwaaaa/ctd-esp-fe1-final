@@ -8,10 +8,10 @@ const pageSlice = createSlice({
 	name: "page",
 	initialState,
 	reducers: {
-		sum: (state) => {
+		incrementPage: (state) => {
 			state.value += 1;
 		},
-		res: (state) => {
+		decrementPage: (state) => {
 			state.value -= 1;
 		},
 		setear: (state) => {
@@ -20,5 +20,5 @@ const pageSlice = createSlice({
 	},
 });
 
-export const { sum, res, setear } = pageSlice.actions;
+export const { incrementPage, decrementPage, setear } = pageSlice.actions;
 export default pageSlice.reducer;

@@ -1,25 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Character {
-	id: number;
-	name: string;
-	status: string;
-	species: string;
-	type: string;
-	gender: string;
-	origin: {
-		name: string;
-		url: string;
-	};
-	location: {
-		name: string;
-		url: string;
-	};
-	image: string;
-	episode: string[];
-	url: string;
-	created: string;
-}
+import { Character } from "../../interfaces";
 
 interface FavoritosState {
 	favoritos: Character[];
@@ -37,9 +17,7 @@ const favoritosSlice = createSlice({
 			state.favoritos = [...state.favoritos, action.payload];
 		},
 		eliminarFavorito: (state, action: PayloadAction<number>) => {
-			const index = state.favoritos.findIndex((x) => x.id === action.payload);
-			console.log(action.payload);
-			state.favoritos.splice(index, 1);
+			state.favoritos = state.favoritos.filter((x) => x.id !== action.payload);
 		},
 		eliminarFavoritos: (state) => {
 			state.favoritos = [];
