@@ -3,17 +3,17 @@ import Paginacion from "../componentes/paginacion/paginacion.componente";
 import Filtros from "../componentes/personajes/filtros.componente";
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { get_character_name } from "../redux/slices/filterName";
+import { getCharacterName } from "../redux/slices/filterName";
 import { CharactersResponse } from "../interfaces";
 
 const PaginaInicio: FC = () => {
 	const { characters2, loading2 } = useAppSelector(
 		(state) => state.filterByName
 	) as { characters2: CharactersResponse; loading2: boolean };
-	console.log(characters2);
+
 	const dispatch = useAppDispatch();
 	const limpiar = () => {
-		dispatch(get_character_name({ name: "", page: 1 }));
+		dispatch(getCharacterName({ name: "", page: 1 }));
 	};
 	return (
 		<div className="container">
