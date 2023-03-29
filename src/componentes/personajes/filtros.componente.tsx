@@ -10,6 +10,19 @@ interface Props {
 	filterRef: RefObject<HTMLInputElement>;
 }
 
+/**
+ * @typedef {Object} Props
+ * @property {RefObject<HTMLInputElement>} filterRef - Una referencia al elemento de entrada.
+ */
+
+/**
+ * Componente Filtros.
+ *
+ * Muestra un campo de texto para filtrar los resultados por nombre.
+ *
+ * @param {Props} props - Propiedades del componente.
+ * @returns {JSX.Element} Elemento JSX del componente Filtros.
+ */
 const Filtros = ({ filterRef }: Props): JSX.Element => {
 	const [getName, setName] = useState<string>("");
 	const dispatch = useAppDispatch();
