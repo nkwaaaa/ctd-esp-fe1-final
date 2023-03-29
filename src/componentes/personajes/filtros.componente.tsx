@@ -4,14 +4,7 @@ import "./filtros.css";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getCharacterName } from "../../redux/slices/filterName";
 import { setear } from "../../redux/slices/pageSlice";
-
-/**
- * Componente Filtros.
- *
- * Muestra un campo de texto para filtrar los resultados por nombre.
- *
- * @returns {JSX.Element} Elemento JSX del componente Filtros.
- */
+import { useDebounce } from "../../hooks/useDebounce";
 
 interface Props {
 	filterRef: RefObject<HTMLInputElement>;
@@ -25,15 +18,17 @@ const Filtros = ({ filterRef }: Props): JSX.Element => {
 	const handlerChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		dispatch(setear());
 		setName(e.target.value);
-		dispatch(getCharacterName({ name: e.target.value, page: getCount }));
 	};
+
+	const debouncedFromText = useDebounce(getName, 500);
 
 	useEffect(() => {
 		dispatch(getCharacterName({ name: "", page: 1 }));
 	}, [dispatch]);
+
 	useEffect(() => {
-		dispatch(getCharacterName({ name: getName, page: getCount }));
-	}, [getCount, dispatch, getName]);
+		dispatch(getCharacterName({ name: debouncedFromText, page: getCount }));
+	}, [getCount, dispatch, debouncedFromText]);
 
 	return (
 		<div className="filtros">
